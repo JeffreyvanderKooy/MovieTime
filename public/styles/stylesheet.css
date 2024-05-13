@@ -1,0 +1,503 @@
+* {
+    font-family: "Roboto";
+    -webkit-box-sizing: border-box;
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    border: none;
+}
+
+/* Login page styling */
+.wrapper_login {
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-image: linear-gradient(-25deg, black 20%, white 20%, white 78%, black 78%);
+    position: relative;
+}
+
+.form_container {
+    border: black 5px solid;
+    height: 40%;
+    width: 40%;
+    display: flex;
+    overflow: hidden;
+    border-radius: 10px;
+    position: relative;
+}
+
+#logoImg {
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 200px;
+    border-radius: 50%;
+}
+
+#stickmanImg {
+    position: absolute;
+    width: 200px;
+    right: 0;
+    bottom: 0;
+    border-radius: 50%;
+}
+
+.login {
+    height: 100%;
+    width: 50%;
+    background-color: white;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    align-items: center;
+    padding: 0px 30px;
+}
+
+.login input {background-color: black; color: white;}
+.login input::placeholder {color: white; opacity: 0.7;}
+
+#submitLogin { 
+    color: white;
+    font-size: 1rem;
+    font-weight: bold;
+    cursor: pointer;
+ }
+
+.register {
+    height: 100%;
+    width: 50%;
+    background-color: black;
+    color: white;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    align-items: center;
+    padding: 0px 30px;
+}
+
+.register input::placeholder { color: black; opacity: 0.7;}
+
+#submitRegister {
+    font-weight: bold;
+    cursor: pointer;
+}
+
+input {
+    width: 100%;
+    padding: 5px;
+    border-radius: 5px;
+}
+
+.underline { text-decoration: underline; cursor: pointer; }
+
+.form_slider {
+    width: 50%;
+    height: 100%;
+    position: absolute;
+    right: 0%;
+    background-color: black;
+    color: white;
+    z-index: 999;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding-top: 20px;
+    transition: all 0.3s ease-in;
+    font-weight: bold;
+}
+
+.form_slider li {
+    margin: 20px 0px;
+    font-size: large;
+}
+
+.form_slider-change {
+    background-color: white;
+    color: black;
+    right: 50%;
+}
+
+/* Home page styling */
+
+section { min-height: 100vh ; }
+
+#hero_section { 
+    background-image: linear-gradient(-30deg, white 80%, black 80%);
+    position: relative;
+}
+
+#homeLogoImg {
+    position: absolute;
+    width: 200px;
+    top: 0;
+    left: 0;
+    z-index: 1;
+}
+
+.navigation {
+    height: 15%;
+    background-color: black;
+    color: white;
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    padding: 0px 50px;
+    font-size: 1.5rem;
+    position: relative;
+}
+
+.account {
+    margin-left: 20px;
+    width: 70px;
+    cursor: pointer;
+}
+
+.account_setting {
+    background-color: black;
+    position: absolute;
+    right: 0;
+    bottom: 0;
+    transform: translateY(100%);
+    font-size: 0.7rem;
+    padding: 10px 10px;
+    text-decoration: underline;
+}
+
+.account_setting form input {
+    cursor: pointer;
+    background-color: white;
+    color: black;
+    font-weight: bold;
+    border-radius: 0;
+    margin: 5px 0px;
+}
+
+.hero_wrapper {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 50px 0px;
+    font-size: 2rem;
+}
+
+.watchlist {
+    height: 100%;
+    width: 100%;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.watchlist_carousel {
+    height: 100%;
+    margin-top: 10px;
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+    width: 65%;
+    cursor:grab;
+}
+
+.watchlist_carousel:active {cursor: grabbing;}
+
+/* styling for movie cards */
+.slick-slide {
+    margin: 0 10px; /* Adjust the margin as needed */
+}
+
+/* Adjust the container to account for the slide margins */
+.slick-list {
+    margin: 0 -10px; /* Negative margin to counteract slide margins */
+}
+
+.movie_card {
+    height: 350px;
+    width: 300px;
+    border: black 2px solid;
+    padding: 15px;
+    border-radius: 15px !important;
+    position: relative;
+    background-color: white;
+}
+
+.title_score {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    color: black;
+}
+
+.title_score h1 { font-size: 1rem;}
+
+.imdb_score {
+    display: flex;
+    border: black 2px solid;
+    border-radius: 50%;
+    width: 25px;
+    height: 25px;
+    font-size: 0.6rem;
+    padding: 5px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: black;
+    color: white;
+    font-weight: bold;
+}
+
+.poster_img {
+    width: 100%;
+    height: 50%;
+    background-size: cover;
+    background-position: center;
+    margin: 10px 0px;
+    border: black 2px solid;
+}
+
+.release_genre {
+    display: flex;
+    justify-content: space-between;
+    background-color: black;
+    padding: 5px;
+    font-size: 0.5rem;
+}
+
+.overview {
+    font-size: 0.78rem;
+    text-align: justify;
+    margin-top: 5px;
+    color: black;
+    height: 20%;
+    overflow: auto;
+}
+
+
+.favoriteForm {
+    position: absolute;
+    right: 5px;
+    bottom: 5px;
+}
+
+.favoriteForm button {
+   background: transparent;
+   width: 25px;
+   height: 25px;
+   border: black 2px solid;
+   background-color: black;
+   color: white;
+   border-radius: 50%;
+   display: flex;
+   justify-content: center;
+   align-items: center;
+   cursor: pointer;
+   opacity: 0.5;
+   transition: all 0.5s;
+}
+
+.favoriteForm button:hover { transform: scale(1.1); opacity: 1;}
+
+.release_genre p { font-size: 1rem; color: white;}
+
+/* form to navigate to search page  */
+.search {
+    height: 200px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+}
+
+.search form input {
+    width: 200px;
+    background-color: black;
+    color: white;
+    cursor: pointer;
+    font-size: 1.5rem;
+    font-weight: bold;
+    padding: 10px;
+}
+
+#middle_section{ 
+    background-color: black ;
+    padding: 20px 200px;
+    min-height: 100vh;
+}
+
+.playing_now {
+    color: white;
+    text-align: center;
+    font-size: 1.5rem;
+    margin: 20px 0px;
+}
+
+.playing_now-carousel {
+    margin-top: 10px;
+    background-color: black;
+    cursor:grab;
+}
+
+.playing_now-carousel:active {cursor: grabbing;}
+
+.coming_soon {
+    color: white;
+    text-align: center;
+    font-size: 1.5rem;
+    margin: 20px 0px;
+}
+
+.coming_soon-carousel {
+    margin-top: 10px;
+    background-color: black;
+    cursor:grab;
+}
+
+.coming_soon-carousel:active {cursor: grabbing;}
+
+#footer_section { 
+    background-image: linear-gradient(-30deg, black 25%, white 25%) ;
+    position: relative;
+    padding: 30px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.genre {
+    display: flex;
+    gap: 20px;
+    margin-bottom: 50px;
+}
+
+.genre form {
+    display: flex;
+}
+
+.genre form select {
+    border: 2px solid black;
+}
+
+.genre form input {
+    border-radius: 0;
+    color: white;
+    background-color: black;
+    cursor: pointer;
+}
+
+.suggested_grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    grid-template-rows: 1fr 1fr 1fr;
+    gap: 20px;
+}
+
+#homeStickmanImg {
+    position: absolute;
+    width: 200px;
+    bottom: 0;
+    right: 0;
+    z-index: 1;
+}
+
+/* example card for watchlist */
+
+.blur {
+    filter: blur(2px);
+}
+
+.tutorial_add {
+    position: absolute;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    bottom: 10px;
+    left: 20px;
+    font-size: 0.8rem;
+    font-weight: bold;
+}
+
+.tutorial_add img {
+    height: 20px;
+    width: 20px;
+}
+
+/* search page styling */
+
+.search_wrapper {
+    min-height: 100vh;
+    background-image: linear-gradient(-30deg, black 20%, white 20%, white 85%, black 85%);
+    position: relative;
+}
+
+#searchLogoImg {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 150px;
+    height: 150px;
+    z-index: 999;
+}
+
+#stickmanLogoImg {
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    width: 200px;
+    height: 200px;
+    z-index: 999;
+}
+
+.search_container {
+    width: 65%;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 60px;
+    border: black 2px solid;
+    padding: 10px;
+    display: flex;
+    border-radius: 15px;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.search_container form {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.search_container input {
+    color: black;
+    background-color: white;
+    border: 2px solid black;
+    border-radius: 10px;
+    height: 50px;
+    padding: 5px;
+    width: 50%;
+    outline: none;
+}
+
+.searchButton {
+    background: transparent;
+    transform: translateX(-100%);
+    cursor: pointer;
+}
+
+.search_container button img {
+    width: 40px;
+}
+
+.result_carousel {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+    cursor: grab;
+}
+
+.result_carousel:active {
+    cursor: grabbing;
+}

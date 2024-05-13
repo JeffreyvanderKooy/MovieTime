@@ -1,0 +1,73 @@
+<%- include("./partials/header.ejs") %>
+
+<body>
+    <div class="search_wrapper">
+     <img src="./assets/Logo.jpeg" alt="Company Logo"  id="searchLogoImg">
+     <img src="./assets/BBackgroundStickmanWatchingTV.jpeg" alt="Stickman watching a tv" id="homeStickmanImg">
+     <header class="navigation">
+         <h1>Search Movies By Title</h1>
+         <img src="./assets/accountCircle.png" alt="Account options" class="account">
+ 
+         <div class="account_setting">
+            <form  method="GET">
+                <input type="submit" formaction="/home" value="Home">
+                <input type="submit" formaction="/" value="Logout">
+            </form>
+         </div>
+     </header>
+ 
+         <div class="search_container">
+             <form action="/search" method="post">
+                 <input type="text" required placeholder="<%= locals.error ? error : "Search by title" %>" class="searchText" name="movieTitle">
+                 <button type="submit" class="searchButton">
+                     <img src="./assets/search.png" alt="Search button">
+                 </button>
+                    <% if (locals.results) { %>
+                        <h3>Search results: <%= locals.results.length %> </h3>
+                   <% } %>
+             </form>
+ 
+             <div class="result_carousel">
+                <% if (locals.results) { %>
+                <% for (i=0; i<results.length; i++) { %>
+                    <div class="movie_card result">
+                        <div class="title_score">
+                            <h1><%= results[i].title %></h1>
+                            <div class="imdb_score">
+                                <% if (results[i].vote_average < 1 || !results[i].vote_average) { %>
+                                    <h2><%= results[i].vote_average %></h2>
+                                <% } else { %>
+                                <h2><%= (results[i].vote_average).toFixed(1) %></h2>
+                                <% } %>
+                            </div>
+                        </div>
+    
+                        <div class="poster_img" style="background-image: url(https://image.tmdb.org/t/p/w500<%= results[i].poster_path %>);"></div>
+    
+                        <div class="release_genre">
+                            <p><%= results[i].release_date %></p>
+                        </div>
+    
+                        <div class="overview">
+                            <p><%= results[i].overview %></p>
+                        </div>
+    
+                        <form class="favoriteForm" action="/favorite" method="post">
+                            <input type="text" value="<%= results[i].title %>" hidden="true" autocomplete="off" name="title">
+                            <input type="text" value="<%= results[i].vote_average %>" hidden="true" autocomplete="off" name="score">
+                            <input type="text" value="<%= results[i].release_date %>" hidden="true" autocomplete="off" name="release_date">
+                            <input type="text" value="<%= results[i].poster_path %>" hidden="true" autocomplete="off" name="poster_path">
+                            <input type="text" value="<%= results[i].overview %>" hidden="true" autocomplete="off" name="overview">
+                                <button type="submit"><h1>+</h1></button>
+                        </form>
+                    </div>
+                    <% }} %>
+             </div>
+         </div>
+    </div>   
+    
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+     <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.min.js"></script>
+     <script src="./frontend.js"></script>
+ </body>
+ </html>

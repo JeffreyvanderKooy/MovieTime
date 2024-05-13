@@ -1,0 +1,246 @@
+<%- include("./partials/header.ejs") %>
+
+<body>
+    <section id="hero_section">
+ 
+     <img src="./assets/Logo.jpeg" alt="Company Logo" id="homeLogoImg">
+ 
+     <header class="navigation">
+         <h1>Welcome, <%= username %></h1>
+         <img src="./assets/accountCircle.png" alt="Account options" class="account">
+ 
+         <div class="account_setting">
+            <form  method="GET">
+                <input type="submit" formaction="/home" value="Home">
+                <input type="submit" formaction="/" value="Logout">
+            </form>
+         </div>
+     </header>
+ 
+     <div class="hero_wrapper">
+         <div class="watchlist">
+             <h1>Your watchlist,</h1>
+             <div class="watchlist_carousel">
+                
+                <% if (locals.watchlist.length === 0) { %>
+                 <div class="movie_card">
+                     <div class="title_score blur">
+                         <h1>Jurrasic park: the Lost World</h1>
+                         <div class="imdb_score blur">
+                             <h2>7.6</h2>
+                         </div>
+                     </div>
+ 
+                     <div class="poster_img blur" style="background-image: url(https://image.tmdb.org/t/p/original/ahkJNt66Bx2W04BBIHplByVtSaU.jpg);"></div>
+ 
+                     <div class="release_genre blur">
+                         <p>2015-05-05</p>
+                     </div>
+ 
+                     <div class="overview blur">
+                         <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Magni quis tenetur obcaecati ducimus id unde iure ut, fugiat autem numquam.</p>
+                     </div>
+ 
+                     <form class="favoriteForm" action="" method="">
+                         <input type="text" value="" hidden="true" autocomplete="off" name="title">
+                         <input type="text" value="" hidden="true" autocomplete="off" name="score">
+                         <input type="text" value="" hidden="true" autocomplete="off" name="genre">
+                         <input type="text" value="" hidden="true" autocomplete="off" name="release-date">
+                         <input type="text" value="" hidden="true" autocomplete="off" name="poster-path">
+                         <input type="text" value="" hidden="true" autocomplete="off" name="overview">
+                             <button type="submit"><h1>+</h1></button>
+                     </form>
+ 
+                     <div class="tutorial_add">
+                         <p>Click to add movies to your watchlist</p>
+                         <img src="./assets/arrow.png" alt="indicator arrow">
+                     </div>
+                 </div>
+                 <% } else { %>
+                    <% for (i=0; i < watchlist.length; i++) { %>
+                        <div class="movie_card watchcard">
+                            <div class="title_score">
+                                <h1><%= watchlist[i].movie_title %></h1>
+                                <div class="imdb_score">
+                                    <h2><%= (parseInt(watchlist[i].movie_score)).toFixed(1) %> </h2>
+                                </div>
+                            </div>
+        
+                            <div class="poster_img" style="background-image: url(https://image.tmdb.org/t/p/w500<%= watchlist[i].movie_poster %>);"></div>
+        
+                            <div class="release_genre">
+                                <p><%= watchlist[i].movie_release %></p>
+                            </div>
+        
+                            <div class="overview">
+                                <p><%= watchlist[i].movie_overview %></p>
+                            </div>
+        
+                            <form class="favoriteForm" action="/delete" method="POST">
+                                <input type="text" value="<%= watchlist[i].movie_title %>" hidden="true" autocomplete="off" name="title">
+                                <button type="submit"><h1>-</h1></button>
+                            </form>
+                        </div>
+                        <% }} %>
+ 
+             </div>
+         </div>
+ 
+         <div class="search">
+             <form action="/search" method="get">
+                 <input type="submit" value="Search Movies">
+             </form>
+         </div>
+     </div>
+     
+ 
+    </section>
+ 
+    <section  id="middle_section">
+         <div class="playing_now">
+             <h1>Playing now,</h1>
+             <div class="playing_now-carousel">
+                 <% for (i=0; i < playing.length; i++) { %>
+                 <div class="movie_card">
+                     <div class="title_score">
+                         <h1><%= playing[i].title %></h1>
+                         <div class="imdb_score">
+                             <h2><%= (playing[i].vote_average).toFixed(1) %></h2>
+                         </div>
+                     </div>
+ 
+                     <div class="poster_img" style="background-image: url(https://image.tmdb.org/t/p/w500<%= playing[i].poster_path %>);"></div>
+ 
+                     <div class="release_genre">
+                         <p><%= playing[i].release_date %></p>
+                     </div>
+ 
+                     <div class="overview">
+                         <p><%= playing[i].overview %></p>
+                     </div>
+ 
+                     <form class="favoriteForm" action="/favorite" method="post">
+                         <input type="text" value="<%= playing[i].title %>" hidden="true" autocomplete="off" name="title">
+                         <input type="text" value="<%= playing[i].vote_average %>" hidden="true" autocomplete="off" name="score">
+                         <input type="text" value="<%= playing[i].release_date %>" hidden="true" autocomplete="off" name="release_date">
+                         <input type="text" value="<%= playing[i].poster_path %>" hidden="true" autocomplete="off" name="poster_path">
+                         <input type="text" value="<%= playing[i].overview %>" hidden="true" autocomplete="off" name="overview">
+                             <button type="submit"><h1>+</h1></button>
+                     </form>
+                 </div>
+                 <% } %>
+             </div>
+         </div>
+ 
+         <div class="coming_soon">
+             <h1>Coming soon,</h1>
+             <div class="coming_soon-carousel">
+                <% for (i=0; i<upcoming.length; i++) { %>
+                 <div class="movie_card">
+                     <div class="title_score">
+                         <h1><%= upcoming[i].title %></h1>
+                         <div class="imdb_score">
+                             <h2><%= (upcoming[i].vote_average).toFixed(1) %></h2>
+                         </div>
+                     </div>
+ 
+                     <div class="poster_img" style="background-image: url(https://image.tmdb.org/t/p/w500<%= upcoming[i].poster_path %>);"></div>
+ 
+                     <div class="release_genre">
+                         <p><%= upcoming[i].release_date %></p>
+                     </div>
+ 
+                     <div class="overview">
+                         <p><%= upcoming[i].overview %></p>
+                     </div>
+ 
+                     <form class="favoriteForm" action="/favorite" method="post">
+                         <input type="text" value="<%= upcoming[i].title %>" hidden="true" autocomplete="off" name="title">
+                         <input type="text" value="<%= upcoming[i].vote_average %>" hidden="true" autocomplete="off" name="score">
+                         <input type="text" value="<%= upcoming[i].release_date %>" hidden="true" autocomplete="off" name="release_date">
+                         <input type="text" value="<%= upcoming[i].poster_path %>" hidden="true" autocomplete="off" name="poster_path">
+                         <input type="text" value="<%= upcoming[i].overview %>" hidden="true" autocomplete="off" name="overview">
+                             <button type="submit"><h1>+</h1></button>
+                     </form>
+                 </div>
+                 <% } %>
+             </div>
+         </div>
+    </section>
+ 
+    <section id="footer_section">
+     <div class="genre">
+         <h2>Suggested movies based on</h2>
+         <form action="/genre" method="post">
+             <select name="genre" title="genre">
+                <% if (locals.genreText) { %>
+                <option value=""><%= genreText %></option>
+                <% } else { %>
+                 <option value="">Select</option>
+                <% } %>
+                 <option value="Action">Action</option>
+                 <option value="Adventure">Adventure</option>
+                 <option value="Animation">Animation</option>
+                 <option value="Comedy">Comedy</option>
+                 <option value="Crime">Crime</option>
+                 <option value="Documentary">Documentary</option>
+                 <option value="Drama">Drama</option>
+                 <option value="Family">Family</option>
+                 <option value="Fantasy">Fantasy</option>
+                 <option value="History">History</option>
+                 <option value="Horror">Horror</option>
+                 <option value="Music">Music</option>
+                 <option value="Mystery">Mystery</option>
+                 <option value="Romance">Romance</option>
+                 <option value="Science Fiction">Science Fiction</option>
+                 <option value="TV Movie">TV-Film</option>
+                 <option value="War">War</option>
+                 <option value="Western">Western</option>
+             </select>
+                 <input type="submit" value="Change">
+             </form>
+     </div>
+ 
+     <div class="suggested_grid">
+        <% if (!locals.recommended) { %>
+            <% } else { %>
+        <% for (i=0; i < 6; i++) { %>
+         <div class="movie_card">
+             <div class="title_score">
+                 <h1><%= recommended[i].title %></h1>
+                 <div class="imdb_score">
+                     <h2><%= (recommended[i].vote_average).toFixed(1) %></h2>
+                 </div>
+             </div>
+ 
+             <div class="poster_img" style="background-image: url(https://image.tmdb.org/t/p/w500<%= recommended[i].poster_path %>);"></div>
+ 
+             <div class="release_genre">
+                 <p><%= recommended[i].release_date %></p>
+             </div>
+ 
+             <div class="overview">
+                 <p><%= recommended[i].overview %></p>
+             </div>
+ 
+             <form class="favoriteForm" action="/favorite" method="post">
+                 <input type="text" value="<%= recommended[i].title %>" hidden="true" autocomplete="off" name="title">
+                 <input type="text" value="<%= recommended[i].vote_average %>" hidden="true" autocomplete="off" name="score">
+                 <input type="text" value="<%= recommended[i].release_date %>" hidden="true" autocomplete="off" name="release_date">
+                 <input type="text" value="<%= recommended[i].poster_path %>" hidden="true" autocomplete="off" name="poster_path">
+                 <input type="text" value="<%= recommended[i].overview %>" hidden="true" autocomplete="off" name="overview">
+                     <button type="submit"><h1>+</h1></button>
+             </form>
+         </div>
+         <% }} %>
+     </div>
+ 
+     <img src="./assets/BBackgroundStickmanWatchingTV.jpeg" alt="Stickman watching a tv" id="homeStickmanImg">
+    </section>
+ 
+     
+     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+     <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.min.js"></script>
+     <script src="./frontend.js"></script>
+ </body>
+ </html>

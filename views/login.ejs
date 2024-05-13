@@ -1,0 +1,40 @@
+<%- include("./partials/header.ejs") %>
+
+<body>
+    <div class="wrapper_login">
+        <div class="form_container">
+            <form action="/login" method="post" class="login">
+                <h1>Login</h1>
+                <input placeholder= "<%= locals.error ? error : "username*" %>" type="text" required name="username" autocomplete="off">
+                <input placeholder="password*" required type="password" name="password" autocomplete="off">
+                <input id="submitLogin" type="submit" value="Login">
+                <h2>Dont have an account? <span class="underline">Register.</span></h2>
+            </form>
+
+            <form action="/register" method="post" class="register">
+                <h1>Register</h1>
+                <input placeholder="<%= locals.error ? error : "username*" %>" type="text" required name="username" autocomplete="off" >
+                <input placeholder="password*" required type="password" name="password" autocomplete="off">
+                <input id="submitRegister" type="submit" value="Register">
+                <h2>Already have an account? <span class="underline">Login.</span></h2>
+            </form>
+
+            <div class="form_slider">
+                <h2>Features</h2>
+                <ul>
+                    <li>Save your favorite movies.</li>
+                    <li>Browse upcoming movies.</li>
+                    <li>Movies currently playing.</li>
+                    <li>Search for movies.</li>
+                </ul>
+            </div>
+        </div>
+
+        <img id="stickmanImg" src="./assets/BBackgroundStickmanWatchingTV.jpeg" alt="Stickman watching TV image">
+        <img id="logoImg" src="./assets/Logo.jpeg" alt="Logo image">
+    </div>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+    <script src="./frontend.js"></script>
+</body>
+</html>
